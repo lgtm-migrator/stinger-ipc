@@ -431,6 +431,15 @@ class StingerSpec:
         self._brokers: Dict[str, Broker] = {}
 
     @property
+    def method_return_codes(self) -> Dict[int, str]:
+        return {
+            0: "Success",
+            1: "Client Error",
+            2: "Server Error",
+            3: "Transport Error",
+        }
+
+    @property
     def interface_info(self) -> Tuple[str, Dict[str, Any]]:
         info = {
             "name": self._name, 
