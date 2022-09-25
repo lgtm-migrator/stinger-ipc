@@ -9,8 +9,6 @@ from .exceptions import InvalidStingerStructure
 from jacobsjinjatoo import stringmanip
 
 
-ALLOWED_ARG_TYPES = []
-
 class Arg:
     def __init__(self, name: str, description: Optional[str] = None):
         self._name = name
@@ -197,6 +195,10 @@ class ArgStruct(Arg):
 
     @property
     def python_type(self) -> str:
+        return f"stinger_types.{self.python_local_type}"
+
+    @property
+    def python_local_type(self) -> str:
         return stringcase.pascalcase(self.name)
 
     def get_random_example_value(self, lang="python"):
@@ -467,6 +469,7 @@ class StingerSpec:
             1: "Client Error",
             2: "Server Error",
             3: "Transport Error",
+            4: "Payload Error",
         }
 
     @property
